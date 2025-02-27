@@ -2,9 +2,8 @@ package com.example.greetingapp.controller;
 
 import com.example.greetingapp.model.GreetingEntity;
 import com.example.greetingapp.service.GreetingService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/greeting")
@@ -17,7 +16,6 @@ public class GreetingController {
     }
 
     /*
-    // UC 1 - UC 6 (Commented Out)
 
     // UC 4 - Save Greeting
     @PostMapping("/save")
@@ -37,13 +35,23 @@ public class GreetingController {
     public List<GreetingEntity> getAllGreetings() {
         return greetingService.getAllGreetings();
     }
-    */
 
-    // UC 7 - Edit Greeting Message
+    // UC 7 - Update Greeting Message
     @PutMapping("/edit/{id}")
     public Optional<GreetingEntity> updateGreeting(@PathVariable Long id,
                                                    @RequestParam String message) {
         return greetingService.updateGreeting(id, message);
     }
+    */
 
+    // UC 8 - Delete Greeting Message
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteGreeting(@PathVariable Long id) {
+        boolean isDeleted = greetingService.deleteGreeting(id);
+        if (isDeleted) {
+            return ResponseEntity.ok("Greeting with ID " + id + " deleted successfully.");
+        } else {
+            return ResponseEntity.status(404).body("Greeting with ID " + id + " not found.");
+        }
+    }
 }

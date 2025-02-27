@@ -16,7 +16,6 @@ public class GreetingService {
     }
 
     /*
-    // UC 1 - UC 6 (Commented Out)
 
     // UC 4 - Save Greeting
     public GreetingEntity saveGreeting(String firstName, String lastName) {
@@ -42,7 +41,6 @@ public class GreetingService {
     public List<GreetingEntity> getAllGreetings() {
         return greetingRepository.findAll();
     }
-    */
 
     // UC 7 - Update Greeting Message
     public Optional<GreetingEntity> updateGreeting(Long id, String newMessage) {
@@ -50,5 +48,15 @@ public class GreetingService {
             greeting.setMessage(newMessage);
             return greetingRepository.save(greeting);
         });
+    }
+    */
+
+    // UC 8 - Delete Greeting Message
+    public boolean deleteGreeting(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
