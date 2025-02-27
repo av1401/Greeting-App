@@ -4,7 +4,7 @@ import com.example.greetingapp.model.GreetingEntity;
 import com.example.greetingapp.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GreetingService {
@@ -15,30 +15,30 @@ public class GreetingService {
         this.greetingRepository = greetingRepository;
     }
 
-    //  Returns default greeting
-    public String getSimpleGreeting() {
-        return "Hello World";
-    }
-
-    //  Generates a personalized greeting and saves it to the DB
+    /*
+    // Previous UC 4 - Save Greeting (Commented Out)
     public GreetingEntity saveGreeting(String firstName, String lastName) {
         String message;
         if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {
-            message = "Hello, " + firstName + " " + lastName + "!";
+            message = "Hello " + firstName + " " + lastName;
         } else if (firstName != null && !firstName.isEmpty()) {
-            message = "Hello, " + firstName + "!";
+            message = "Hello " + firstName;
         } else if (lastName != null && !lastName.isEmpty()) {
-            message = "Hello, " + lastName + "!";
+            message = "Hello " + lastName;
         } else {
-            message = getSimpleGreeting(); // Default "Hello World"
+            message = "Hello World";
         }
-
-        GreetingEntity greeting = new GreetingEntity(message);
-        return greetingRepository.save(greeting);
+        return greetingRepository.save(new GreetingEntity(message));
     }
 
-    // Fetch all saved greetings
+    // Previous UC 4 - Fetch All Greetings (Commented Out)
     public List<GreetingEntity> getAllGreetings() {
         return greetingRepository.findAll();
+    }
+    */
+
+    //  UC 5 - Find Greeting by ID
+    public Optional<GreetingEntity> getGreetingById(Long id) {
+        return greetingRepository.findById(id);
     }
 }
