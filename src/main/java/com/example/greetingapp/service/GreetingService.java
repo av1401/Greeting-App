@@ -4,6 +4,7 @@ import com.example.greetingapp.model.GreetingEntity;
 import com.example.greetingapp.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,8 +16,7 @@ public class GreetingService {
         this.greetingRepository = greetingRepository;
     }
 
-    /*
-    // Previous UC 4 - Save Greeting (Commented Out)
+    // UC 4 - Save Greeting
     public GreetingEntity saveGreeting(String firstName, String lastName) {
         String message;
         if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {
@@ -31,14 +31,13 @@ public class GreetingService {
         return greetingRepository.save(new GreetingEntity(message));
     }
 
-    // Previous UC 4 - Fetch All Greetings (Commented Out)
-    public List<GreetingEntity> getAllGreetings() {
-        return greetingRepository.findAll();
-    }
-    */
-
-    //  UC 5 - Find Greeting by ID
+    // UC 5 - Find Greeting by ID
     public Optional<GreetingEntity> getGreetingById(Long id) {
         return greetingRepository.findById(id);
+    }
+
+    // UC 6 - Fetch All Greetings
+    public List<GreetingEntity> getAllGreetings() {
+        return greetingRepository.findAll();
     }
 }
