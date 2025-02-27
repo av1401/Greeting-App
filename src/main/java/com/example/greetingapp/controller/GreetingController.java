@@ -4,7 +4,6 @@ import com.example.greetingapp.model.GreetingEntity;
 import com.example.greetingapp.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,11 +16,13 @@ public class GreetingController {
         this.greetingService = greetingService;
     }
 
+    /*
+    // UC 1 - UC 6 (Commented Out)
+
     // UC 4 - Save Greeting
     @PostMapping("/save")
-    public GreetingEntity saveGreeting(
-            @RequestParam(required = false) String firstName,
-            @RequestParam(required = false) String lastName) {
+    public GreetingEntity saveGreeting(@RequestParam(required = false) String firstName,
+                                       @RequestParam(required = false) String lastName) {
         return greetingService.saveGreeting(firstName, lastName);
     }
 
@@ -36,4 +37,13 @@ public class GreetingController {
     public List<GreetingEntity> getAllGreetings() {
         return greetingService.getAllGreetings();
     }
+    */
+
+    // UC 7 - Edit Greeting Message
+    @PutMapping("/edit/{id}")
+    public Optional<GreetingEntity> updateGreeting(@PathVariable Long id,
+                                                   @RequestParam String message) {
+        return greetingService.updateGreeting(id, message);
+    }
+
 }
